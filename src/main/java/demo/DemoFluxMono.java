@@ -2,9 +2,11 @@ package demo;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
 import java.util.Observable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.lang.Thread.sleep;
 
@@ -13,6 +15,7 @@ public class DemoFluxMono {
 //        useFlux();
 //        useFlux2();
 //        useFlux3();
+        useFlux4();
 //        useMono();
     }
 
@@ -31,7 +34,6 @@ public class DemoFluxMono {
 
         Flux.just('a', 'b', 'c')
                 .subscribe(i -> System.out.println("Received many : " + i));
-
     }
 
     private static void useFlux2() throws InterruptedException {
@@ -64,6 +66,17 @@ public class DemoFluxMono {
                         i -> System.out.println("Received :: " + i),
                         err -> System.out.println("Error :: " + err),
                         () -> System.out.println("Successfully completed"));
+    }
+
+    private static void useFlux4() throws InterruptedException {
+        AtomicInteger sum = new AtomicInteger(0);
+        Flux
+                .just(1, 2, 3, 4)
+                .subscribeOn(Schedulers.elastic())
+                .reduce(Integer::sum)
+                .subscribe(sum::set);
+
+        System.out.println("Sum = "+ sum.get());
     }
 
     private static void useMono() {
