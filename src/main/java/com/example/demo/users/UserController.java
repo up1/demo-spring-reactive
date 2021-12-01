@@ -26,7 +26,8 @@ public class UserController {
 
     @GetMapping
     private Flux<User> getAllEmployees() {
-        return this.userRepository.findAllUsers().delayElements(Duration.ofSeconds(3));
+//        return this.userRepository.findAllUsers().delayElements(Duration.ofSeconds(3));
+        return this.userRepository.findAllUsers();
     }
 
 }
