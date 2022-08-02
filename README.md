@@ -1,7 +1,7 @@
 # Demo :: Spring Reactive with WebFlux
 * Spring WebFlux
 * Spring Boot Testing
-* Performance testing with Gatling
+* Performance testing with [Gatling](https://gatling.io/)
 
 
 ### Step to run
@@ -12,6 +12,8 @@ $mvnw clean spring-boot:run
 ```
 
 Run performance testing
+* Download Gatling
+* Copy file `perf_test/RestSimulation.scala` to `user-files/simulations/`
 ```
-$gatling.sh -s test.RestSimulation
+$./bin/gatling.sh -s test.RestSimulation
 ```
