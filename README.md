@@ -1,4 +1,4 @@
-# demo-spring-reactive
+# Demo :: Spring Reactive with WebFlux
 * Spring WebFlux
 * Spring Boot Testing
 * Performance testing with Gatling
