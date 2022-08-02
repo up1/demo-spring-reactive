@@ -1,4 +1,4 @@
-package com.example.demo.users;
+package com.example.demo.webflux;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
 
 @RestController
 @RequestMapping("/users/v2")
@@ -25,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping
-    private Flux<User> getAllEmployees() {
+    public Flux<User> getAllEmployees() {
 //        return this.userRepository.findAllUsers().delayElements(Duration.ofSeconds(3));
         return this.userRepository.findAllUsers();
     }
